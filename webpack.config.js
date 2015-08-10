@@ -3,7 +3,7 @@ var Webpack = require('webpack'),
 
 var eslintrcPath = path.resolve(__dirname, '.eslintrc'),
     nodeModulesPath = path.resolve(__dirname, 'node_modules'),
-    buildPath = path.resolve(__dirname, 'server', 'static', 'build'),
+    buildPath = path.resolve(__dirname, 'build'),
     entryPath = path.resolve(__dirname, 'src', 'app.js'),
     sourcePath = path.resolve(__dirname, 'src');
 
