@@ -3,17 +3,18 @@ var Webpack = require('webpack'),
 
 var eslintrcPath = path.resolve(__dirname, '.eslintrc'),
     nodeModulesPath = path.resolve(__dirname, 'node_modules'),
-    buildPath = path.resolve(__dirname, 'src', 'build'),
-    mainPath = path.resolve(__dirname, 'src', 'app.js');
+    buildPath = path.resolve(__dirname, 'server', 'static', 'build'),
+    entryPath = path.resolve(__dirname, 'src', 'app.js'),
+    sourcePath = path.resolve(__dirname, 'src');
 
 var config = {
     devtool: 'eval',
     watch: true,
     entry: {
         app: [
-            'webpack/hot/dev-server',
+            'webpack/hot/only-dev-server',
             'webpack-dev-server/client?http://localhost:8080',
-            mainPath
+            entryPath
         ]
     },
     output: {
@@ -32,8 +33,8 @@ var config = {
         loaders: [
             {
                 test: /\.js(x)?$/,
-                loader: 'babel',
-                exclude: nodeModulesPath
+                loaders: ['react-hot', 'babel'],
+                include: sourcePath
             },
             {
                 test: /\.(css|scss)$/,
