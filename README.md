@@ -1,2 +1,2 @@
 # isomorphic-react-example
-Isomorphice react example with Node, react-router, redux and some material design lite
+Isomorphice react example with Node, express, react-router, and redux!

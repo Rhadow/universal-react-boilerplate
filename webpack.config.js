@@ -52,6 +52,11 @@ var config = {
     },
     plugins: [
         new Webpack.HotModuleReplacementPlugin(),
+        new Webpack.DefinePlugin({
+            'process.env': {
+                BROWSER: JSON.stringify(true)
+            }
+        }),
         new Webpack.NoErrorsPlugin()
     ],
     resolve: {

@@ -1,5 +1,8 @@
-import './_About.scss';
 import React, { Component } from 'react';
+
+if (process.env.BROWSER) {
+	require('./_About.scss');
+}
 
 class About extends Component {
 	_onClickHandler() {

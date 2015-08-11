@@ -1,0 +1,21 @@
+.app-wrapper {
+	.app-navigation {
+		box-sizing: border-box;
+		padding: 24px;
+		background-color: #00bcd4;
+		min-height: 64px;
+		.nav-item {
+			display: inline-block;
+			color: #fff;
+			text-decoration: none;
+			vertical-align: middle;
+			margin-right: 25px;
+
+			&:hover {
+				color: #ff4081;
+			}
+		}
+	}
+	.app-content {
+	}
+}

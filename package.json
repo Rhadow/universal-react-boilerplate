@@ -1,12 +1,12 @@
 {
   "name": "isomorphic-react-example",
   "version": "0.0.1",
-  "description": "Isomorphice react example with Node, react-router, redux and some material design lite",
+  "description": "Isomorphice react example with Node, express, react-router, and redux!",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.13.3",
     "express": "^4.13.3",
-    "material-ui": "^0.10.4",
+    "immutable": "^3.7.4",
     "morgan": "^1.6.1",
     "react": "^0.13.3",
     "react-router": "^1.0.0-beta3",

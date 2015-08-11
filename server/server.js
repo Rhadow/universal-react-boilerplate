@@ -20,6 +20,8 @@ const proxy = httpProxy.createProxyServer();
 const isProduction = process.env.NODE_ENV === 'production';
 const app = express();
 
+process.env.BROWSER = false;
+
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -1,5 +1,8 @@
-import './_Profile.scss';
 import React, { Component } from 'react';
+
+if (process.env.BROWSER) {
+	require('./_Profile.scss');
+}
 
 class Profile extends Component {
 	_onClickHandler() {
