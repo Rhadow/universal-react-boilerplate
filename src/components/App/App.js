@@ -1,5 +1,6 @@
 import './_App.scss';
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class App extends Component {
 	render() {
@@ -9,8 +10,8 @@ class App extends Component {
 				<div className="mdl-layout__drawer">
 				    <span className="mdl-layout-title">Title</span>
 				    <nav className="mdl-navigation">
-				      <a className="mdl-navigation__link" href="/profile">Profile</a>
-				      <a className="mdl-navigation__link" href="/about">About</a>
+				      <Link className="mdl-navigation__link" to="/profile">Profile</Link>
+				      <Link className="mdl-navigation__link" to="/about">About</Link>
 				    </nav>
 				</div>
 				<main className="mdl-layout__content">
