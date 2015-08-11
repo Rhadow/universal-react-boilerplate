@@ -1,6 +1,3 @@
-import '../node_modules/material-design-lite/material.min.css';
-import '../node_modules/material-design-lite/material.min.js';
-
 import React from 'react';
 import { Router } from 'react-router';
 import { history } from 'react-router/lib/BrowserHistory';

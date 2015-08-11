@@ -38,22 +38,24 @@ if (!isProduction) {
             target: 'http://localhost:8080'
         });
 	});
+} else {
+	app.use('/build', express.static(path.join(__dirname, '..', 'build')));
 }
 
-app.use((req, res) => {
+app.use((req, res, next) => {
 	const location = new Location(req.path, req.query);
 	Router.run(appRoutes, location, (err, routeState) => {
-		if (err) {
-			return console.error(err);
+		if (!routeState) {
+			return next();
 		}
-		const InitialComponent = (
-			<Router {...routeState} />
-		);
-		const componentHtml = React.renderToString(InitialComponent);
+		const componentHtml = React.renderToString(<Router {...routeState} />);
 		let resultHtml = indexHtml.replace('${componentHtml}', componentHtml);
 		res.end(resultHtml);
 	});
 });
 
+app.get('*', function(req, res) {
+    res.send('404 - Page Not Found');
+});
 
 export default app;
