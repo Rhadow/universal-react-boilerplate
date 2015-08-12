@@ -4,9 +4,9 @@ import {
 	TODO_DESTROY
 } from '../constants/ActionTypes.js';
 
-const defauleState = new List();
+const defaultState = new List();
 
-export default function(state = defauleState, action) {
+export default function(state = defaultState, action) {
     switch (action.type) {
         case TODO_CREATE:
             return state.concat(action.text);

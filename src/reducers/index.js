@@ -1,2 +1,1 @@
-import todos from './todos';
-export default todos;
+export { default as todos } from './todos';

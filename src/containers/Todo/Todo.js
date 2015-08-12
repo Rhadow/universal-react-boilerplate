@@ -1,20 +1,24 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Todo from '../../components/Todo/Todo';
 
-function mapDispatchToProps(dispatch) {
+// Actions
+import {
+	addTodo,
+	deleteTodo
+} from '../../actions/todoActions';
+
+function mapStateToProps(state) {
     return {
-        onIncrement: () => dispatch(increment())
+    	listData: state.todos.toArray()
     };
 }
 
-class TodoContainer extends Component {
-	render() {
-		return (
-			<Todo />
-		);
-	}
+function mapDispatchToProps(dispatch) {
+    return {
+        onAddHandler: (text) => dispatch(addTodo(text)),
+        onDeleteHandler: (id) => dispatch(deleteTodo(id))
+    };
 }
 
-export default connect(mapDispatchToProps)(TodoContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Todo);
