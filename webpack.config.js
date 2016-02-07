@@ -9,11 +9,10 @@ var eslintrcPath = path.resolve(__dirname, '.eslintrc'),
 
 var config = {
     devtool: 'eval',
-    watch: true,
     entry: {
         app: [
-            'webpack/hot/only-dev-server',
-            'webpack-dev-server/client?http://localhost:8080',
+            'eventsource-polyfill',
+            'webpack-hot-middleware/client',
             entryPath
         ]
     },
@@ -23,47 +22,38 @@ var config = {
         publicPath: '/build/'
     },
     module: {
-        // preLoaders: [
-        //     {
-        //         test: /\.js(x)?$/,
-        //         loader: 'eslint',
-        //         exclude: nodeModulesPath
-        //     }
-        // ],
+        preLoaders: [
+            {
+                test: /\.js(x)?$/,
+                loader: 'eslint',
+                exclude: nodeModulesPath
+            }
+        ],
         loaders: [
             {
                 test: /\.js(x)?$/,
-                loaders: ['react-hot', 'babel'],
+                loaders: ['babel'],
                 include: sourcePath
             },
             {
-                test: /\.(css|scss)$/,
-                loaders: ['style', 'css', 'sass']
-            },
-            {
-                test: /\.(png|jpg|jpeg|gif|svg)$/,
-                loader: 'url?limit=8192'
-            },
-            {
-                test : /\.(woff|woff2|ttf|eot)$/,
-                loader: 'url'
+                test: /\.css$/,
+                loaders: ['style', 'css', 'postcss']
             }
         ]
     },
     plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
         new Webpack.HotModuleReplacementPlugin(),
-        new Webpack.DefinePlugin({
-            'process.env': {
-                BROWSER: JSON.stringify(true)
-            }
-        }),
         new Webpack.NoErrorsPlugin()
     ],
     resolve: {
-        extensions: ['', '.js', '.jsx', '.css', '.scss']
+        extensions: ['', '.js', '.jsx', '.css']
     },
     eslint: {
         configFile: eslintrcPath
+    },
+    postcss: function () {
+        return [autoprefixer, precss];
     }
 };
 
