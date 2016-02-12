@@ -1,13 +1,13 @@
-var Webpack = require('webpack'),
-    path = require('path');
+import Webpack from 'webpack';
+import path from 'path';
 
-var eslintrcPath = path.resolve(__dirname, '.eslintrc'),
+let eslintrcPath = path.resolve(__dirname, '.eslintrc'),
     nodeModulesPath = path.resolve(__dirname, 'node_modules'),
     buildPath = path.resolve(__dirname, 'build'),
-    entryPath = path.resolve(__dirname, 'src', 'app.js'),
+    entryPath = path.resolve(__dirname, 'src', 'client', 'app.js'),
     sourcePath = path.resolve(__dirname, 'src');
 
-var config = {
+let config = {
     devtool: 'eval',
     entry: {
         app: [
@@ -42,7 +42,7 @@ var config = {
         ]
     },
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
+        new Webpack.optimize.OccurenceOrderPlugin(),
         new Webpack.HotModuleReplacementPlugin(),
         new Webpack.NoErrorsPlugin()
     ],
@@ -52,9 +52,9 @@ var config = {
     eslint: {
         configFile: eslintrcPath
     },
-    postcss: function () {
-        return [autoprefixer, precss];
+    postcss: () => {
+        return [];
     }
 };
 
-module.exports = config;
+export default config;
