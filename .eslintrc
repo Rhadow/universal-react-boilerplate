@@ -23,6 +23,7 @@
     "react"
   ],
   rules: {
-    "indent": ["error", 4]
+    "indent": ["error", 4],
+    "no-underscore-dangle": ["off"]
   }
 }

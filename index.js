@@ -2,6 +2,11 @@ var fs = require('fs');
 var babelrc = fs.readFileSync('./.babelrc');
 var config;
 
+
+global.__CLIENT__ = false;
+global.__SERVER__ = true;
+global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
+
 try {
     config = JSON.parse(babelrc);
 } catch (err) {

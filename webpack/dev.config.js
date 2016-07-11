@@ -43,6 +43,14 @@ var config = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            "__CLIENT__": true,
+            "__SERVER__": false,
+            "__DEVELOPMENT__": true,
+            "process.env": {
+                'NODE_ENV': JSON.stringify('development')
+            }
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
     ],
