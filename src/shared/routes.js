@@ -9,6 +9,7 @@ import {
 import App from './components';
 import Profile from './components/profile';
 import Home from './components/home';
+import NotFoundPage from './components/not-found';
 
 const appRoutes = () => (
     <Router history={browserHistory} >
@@ -16,6 +17,7 @@ const appRoutes = () => (
             <IndexRoute component={Home} />
             <Route path="/profile" component={Profile} />
         </Route>
+        <Route path="*" component={NotFoundPage} />
     </Router>
 );
 

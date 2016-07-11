@@ -7,14 +7,14 @@ import appRoutes from './shared/routes'
 const app = express();
 
 app.use((req, res) => {
-    let initialComponentHtml;
+    let initialComponentHtml, isNotFoundPage = false;
     match({ routes: appRoutes(), location: req.url }, (error, redirectLocation, renderProps) => {
         if (error) {
             res.status(500).send(error.message);
         } else if (redirectLocation) {
             res.redirect(302, redirectLocation.pathname + redirectLocation.search);
         } else if (renderProps) {
-            // TODO: 404 page handling
+            isNotFoundPage = !renderProps.routes;
             initialComponentHtml = renderToString(<RouterContext {...renderProps} />);
         }
     });
@@ -30,7 +30,7 @@ app.use((req, res) => {
                 <script type="application/javascript" src="/bundle.js"></script>
             </body>
         </html>`;
-    res.end(HTML);
+    res.status(isNotFoundPage ? 404 : 200).end(HTML);
 });
 
 export default app;
