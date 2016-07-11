@@ -14,7 +14,7 @@ app.use((req, res) => {
         } else if (redirectLocation) {
             res.redirect(302, redirectLocation.pathname + redirectLocation.search);
         } else if (renderProps) {
-            isNotFoundPage = !renderProps.routes;
+            isNotFoundPage = renderProps.routes[1].path === '*';
             initialComponentHtml = renderToString(<RouterContext {...renderProps} />);
         }
     });
@@ -30,7 +30,7 @@ app.use((req, res) => {
                 <script type="application/javascript" src="/bundle.js"></script>
             </body>
         </html>`;
-    res.status(isNotFoundPage ? 404 : 200).end(HTML);
+    res.status(isNotFoundPage ? 404 : 200).send(HTML);
 });
 
 export default app;
