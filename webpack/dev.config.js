@@ -43,6 +43,7 @@ var config = {
         ]
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
     ],
     resolve: {
@@ -59,14 +60,20 @@ var config = {
         return [autoprefixer, precss];
     },
     devServer: {
-        hot: true,
-        proxy: {
+        "hot": true,
+        "quiet": false,
+        "noInfo": true,
+        "inline": true,
+        "proxy": {
             '*': {
-                target: 'http://127.0.0.1:' + (process.env.PORT || 3000),
-                secure: false
+                "target": 'http://127.0.0.1:' + (process.env.PORT || 3000),
+                "secure": false
             }
         },
-        host: '127.0.0.1'
+        "host": '127.0.0.1',
+        "stats": {
+            "colors": true
+        }
     }
 };
 
