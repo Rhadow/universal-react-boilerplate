@@ -14,6 +14,15 @@ try {
     console.error(err);
 }
 
+if (__DEVELOPMENT__) {
+    if (!require('piping')({
+        hook: true,
+        ignore: /(\/\.|~$|\.json|\.scss$)/i
+    })) {
+        return;
+    }
+}
+
 require('babel-register')(config);
 var app = require('./src/server').default;
 const PORT = process.env.PORT || 3000;

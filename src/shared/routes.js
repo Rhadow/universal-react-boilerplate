@@ -6,16 +6,16 @@ import {
     browserHistory,
 } from 'react-router';
 // Components
-import App from './components';
-import Profile from './components/profile';
-import Home from './components/home';
-import NotFoundPage from './components/not-found';
+import App from './containers';
+import UserPicPage from './containers/User-Pic-Page/User-Pic-Page';
+import UserSelectPage from './containers/User-Select-Page/User-Select-Page';
+import NotFoundPage from './containers/Not-Found-Page/Not-Found-Page';
 
 const appRoutes = () => (
     <Router history={browserHistory} >
         <Route path="/" component={App}>
-            <IndexRoute component={Home} />
-            <Route path="/profile" component={Profile} />
+            <IndexRoute component={UserSelectPage} />
+            <Route path="/pic" component={UserPicPage} />
         </Route>
         <Route path="*" component={NotFoundPage} />
     </Router>

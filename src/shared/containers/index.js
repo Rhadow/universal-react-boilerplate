@@ -5,8 +5,8 @@ class AppView extends Component {
     render() {
         return (
             <div id="app-view">
-                <Link to="/">Home</Link>
-                <Link to="/profile">Profile</Link>
+                <Link to="/">User Selection</Link>
+                <Link to="/pic">User Picture</Link>
                 {this.props.children}
             </div>
         );

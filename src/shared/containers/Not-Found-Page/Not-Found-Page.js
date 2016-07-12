@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Profile extends Component {
+class NotFoundPage extends Component {
     render() {
         return (
             <div>
-                Profile!
+                404 Page not found Q_Q
             </div>
         );
     }
 }
 
-export default Profile;
+export default NotFoundPage;
