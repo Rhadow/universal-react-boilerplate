@@ -5,6 +5,8 @@ import {
     IndexRoute,
     browserHistory,
 } from 'react-router';
+// Utilities
+// import fetchComponentData from './utilities/fetchComponentData';
 // Components
 import App from './containers';
 import UserPicPage from './containers/User-Pic-Page/User-Pic-Page';

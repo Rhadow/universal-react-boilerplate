@@ -56,11 +56,14 @@ export function changeUser(newUser) {
 }
 
 export function fetchProfile(name) {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const targetName = typeof name === 'string' ? name : state.profile.name;
+
         dispatch({
             type: FETCHING_USER,
         });
-        fetch(`https://api.github.com/users/${name}`)
+        return fetch(`https://api.github.com/users/${targetName}`)
             .then((response) => {
                 if (response.status >= 400) {
                     throw new Error('Bad response from server');

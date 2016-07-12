@@ -5,6 +5,7 @@ import { RouterContext , match } from 'react-router';
 import { Provider } from 'react-redux';
 import appRoutes from './shared/routes';
 import configureStore from './shared/configureStore';
+import fetchComponentData from './shared/utilities/fetchComponentData';
 
 const app = express();
 const createView = (html, state) => {
@@ -27,10 +28,7 @@ const createView = (html, state) => {
 
 app.use((req, res) => {
     let isNotFoundPage = false,
-        store,
-        initialComponentHtml,
-        initialState,
-        finalView;
+        store;
 
     match({ routes: appRoutes(), location: req.url }, (error, redirectLocation, renderProps) => {
         if (error) {
@@ -40,16 +38,19 @@ app.use((req, res) => {
         } else if (renderProps) {
             isNotFoundPage = renderProps.routes[1].path === '*';
             store = configureStore();
-            initialState = store.getState();
-            initialComponentHtml = renderToString(
-                <Provider store={store}>
-                    <RouterContext {...renderProps} />
-                </Provider>
-            );
+            fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
+                .then(() => {
+                    const initialState = store.getState();
+                    const initialComponentHtml = renderToString(
+                        <Provider store={store}>
+                            <RouterContext {...renderProps} />
+                        </Provider>
+                    );
+                    const finalView = createView(initialComponentHtml, initialState);
+                    res.status(isNotFoundPage ? 404 : 200).send(finalView);
+                });
         }
     });
-    finalView = createView(initialComponentHtml, initialState);
-    res.status(isNotFoundPage ? 404 : 200).send(finalView);
 });
 
 export default app;

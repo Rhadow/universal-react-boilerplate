@@ -4,10 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as profileActions from '../../modules/profile';
 
 class UserPicPage extends Component {
-    componentDidMount() {
-        const { name, fetchProfile } = this.props;
-        fetchProfile(name);
-    }
+    static needs = [profileActions.fetchProfile]
     render() {
         const {
             imgUrl,
